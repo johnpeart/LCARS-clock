@@ -1,6 +1,7 @@
+import chooseDisplay as choose
 import clock as cl
 
-displayType = 'clock' # set to 'clock' or 'wordclock'
+displayType = choose.displayType() # set to 'clock' or 'wordclock'
 
 def main():
     cl.updateDisplay(displayType)

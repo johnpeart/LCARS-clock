@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import ImageTk, Image  
 
 import clock as clock
+import settings as set
 import system as system
 
 # Variables
@@ -9,6 +10,7 @@ screenSize = '720x720'
 refreshTime = 5000
 appName = 'Library Computer Access Retrieval System'
 host = system.getHostIP()
+clockStyle = set.options['style']
 lcarsBackground = '#000000'
 lcarsLabelColor = '#FFCC99'
 lcarsRedAlertColor = '#F09693'
@@ -65,10 +67,12 @@ def createNewFrame(window):
     return frame
 
 # Windows
-frameAppMessage = createNewFrame(app)
-frameAppHostInfo = createNewFrame(app)
-frameAppMessage.pack(expand = True)
-frameAppHostInfo.pack(expand = True)
+frameAppRoot = createNewFrame(app)
+frameAppRoot.pack(expand = True)
+
+windowSettings = createNewWindow('Operations')
+frameSettings = createNewFrame(windowSettings)
+frameSettings.pack(expand = True)
 
 windowStyleClock = createNewWindow('Numeric clock')
 frameStyleClock = createNewFrame(windowStyleClock)
@@ -92,19 +96,19 @@ frameStyleRedAlert.pack(expand = True)
 defaultBanner = ImageTk.PhotoImage(lcarsDefaultBanner)
 
 app_DefaultBannerTop = Label(
-    frameAppMessage,
+    frameAppRoot,
     image = defaultBanner,
     background = lcarsBackground
 )
 app_DefaultBannerBottom = Label(
-    frameAppMessage,
+    frameAppRoot,
     image = defaultBanner,
     background = lcarsBackground
 )
 
 # Styles for app name
 app_Message_Label = Label(
-                frameAppMessage, 
+                frameAppRoot, 
                 font = (lcarsFont, 100),
                 background = lcarsBackground,
                 foreground = lcarsLabelColor,
@@ -114,7 +118,7 @@ app_Message_Label = Label(
 
 # Styles for device host and IP
 app_Hostname_Label = Label(
-                frameAppHostInfo, 
+                frameAppRoot, 
                 font = (lcarsFont, 40),
                 background = lcarsBackground,
                 foreground = lcarsTimeColor,
@@ -123,7 +127,7 @@ app_Hostname_Label = Label(
             )
 
 app_HostIP_Label = Label(
-                frameAppHostInfo, 
+                frameAppRoot, 
                 font = (lcarsFont, 40),
                 background = lcarsBackground,
                 foreground = lcarsTimeColor,
@@ -137,29 +141,173 @@ app_HostIP_Label = Label(
 
 app_DefaultBannerTop.grid(
     row = 0,
-    column = 0
+    column = 0,
+    columnspan = 2
 )
 
 app_Message_Label.grid(
     row = 1,
     column = 0,
-    pady = (60,40)
+    pady = (60,40),
+    columnspan = 2
 )
 
 app_DefaultBannerBottom.grid(
     row = 2,
-    column = 0
+    column = 0,
+    columnspan = 2
 )
 
 app_Hostname_Label.grid(
-    row = 0,
-    column = 0
+    row = 3,
+    column = 0,
+    pady = (60, 0)
 )
 
 app_HostIP_Label.grid(
-    row = 0,
-    column = 1
+    row = 3,
+    column = 1,
+    pady = (60, 0)
 )
+
+##################################
+# STYLES FOR THE SETTINGS WINDOW #
+##################################
+
+settings_DefaultBannerTop = Label(
+    frameSettings,
+    image = defaultBanner,
+    background = lcarsBackground
+)
+settings_DefaultBannerBottom = Label(
+    frameSettings,
+    image = defaultBanner,
+    background = lcarsBackground
+)
+
+# Styles for label ('Operations')
+settings_Label = Label(
+                frameSettings, 
+                font = (lcarsFont, 70),
+                background = lcarsBackground,
+                foreground = lcarsLabelColor,
+                text = 'Operations'.upper()
+            )
+
+# Styles for device host and IP
+settings_Hostname_Label = Label(
+                frameSettings, 
+                font = (lcarsFont, 40),
+                background = lcarsBackground,
+                foreground = lcarsLabelColor,
+                text = 'Hostname'.upper(),
+                padx = 20
+            )
+
+settings_Hostname_Details_Label = Label(
+                frameSettings, 
+                font = (lcarsFont, 40),
+                background = lcarsBackground,
+                foreground = lcarsTimeColor,
+                text = host['hostname'].upper(),
+                padx = 20
+            )
+
+settings_HostIP_Label = Label(
+                frameSettings, 
+                font = (lcarsFont, 40),
+                background = lcarsBackground,
+                foreground = lcarsLabelColor,
+                text = 'IP address'.upper(),
+                padx = 20
+            )
+
+settings_HostIP_Details_Label = Label(
+                frameSettings, 
+                font = (lcarsFont, 40),
+                background = lcarsBackground,
+                foreground = lcarsTimeColor,
+                text = host['ipaddress'].upper(),
+                padx = 20
+            )
+
+settings_ClockStyle_Label = Label(
+                frameSettings, 
+                font = (lcarsFont, 40),
+                background = lcarsBackground,
+                foreground = lcarsLabelColor,
+                text = 'Clock style'.upper(),
+                padx = 20
+            )
+
+settings_ClockStyle_Details_Label = Label(
+                frameSettings, 
+                font = (lcarsFont, 40),
+                background = lcarsBackground,
+                foreground = lcarsTimeColor,
+                text = clockStyle.upper(),
+                padx = 20
+            )
+
+################################
+# GRID FOR THE SETTINGS WINDOW #
+################################
+
+settings_Label.grid(
+    row = 0,
+    column = 0,
+    columnspan = 2,
+    pady = (40, 20)
+)
+
+settings_DefaultBannerTop.grid(
+    row = 1,
+    column = 0,
+    columnspan = 2
+)
+
+settings_Hostname_Label.grid(
+    row = 2,
+    column = 0,
+    pady = (20, 0)
+)
+
+settings_Hostname_Details_Label.grid(
+    row = 2,
+    column = 1,
+    pady = (20, 0)
+)
+
+settings_HostIP_Label.grid(
+    row = 3,
+    column = 0,
+    pady = (20, 0)
+)
+
+settings_HostIP_Details_Label.grid(
+    row = 3,
+    column = 1,
+    pady = (20, 0)
+)
+
+settings_ClockStyle_Label.grid(
+    row = 4,
+    column = 0,
+    pady = (20, 0)
+)
+
+settings_ClockStyle_Details_Label.grid(
+    row = 4,
+    column = 1,
+    pady = (20, 0)
+)
+
+settings_DefaultBannerBottom.grid(
+    row = 5,
+    column = 0,
+    columnspan = 2
+)
+
 
 ################################
 # STYLES FOR THE NUMERIC CLOCK #
@@ -244,13 +392,9 @@ styleYellowAlert_AlertConditionYellow_Label = Label(
                 frameStyleYellowAlert, 
                 font = (lcarsFont, 70),
                 background = lcarsBackground,
-                foreground = lcarsYellowAlertColor
+                foreground = lcarsYellowAlertColor,
+                text = 'Alert: Condition Yellow'.upper()
             )
-
-styleYellowAlert_AlertConditionYellow_LabelText = 'Alert: Condition Yellow'
-styleYellowAlert_AlertConditionYellow_Label.config(
-    text = styleYellowAlert_AlertConditionYellow_LabelText.upper()
-)
 
 styleYellowAlert_AlertMessage_Label = Label(
                 frameStyleYellowAlert, 
@@ -474,7 +618,6 @@ def updateDisplay():
 
     # determines what to show
     # sets up what the display will show
-    clockStyle = clock.clockStyle() 
     updateClock()
 
     app.after(

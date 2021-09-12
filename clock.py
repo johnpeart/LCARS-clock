@@ -1,10 +1,5 @@
 from time import strftime
-
-def clockStyle():
-    
-    clockStyle = 'wordclock'
-
-    return clockStyle
+import settings as set
 
 def formatTime():
 

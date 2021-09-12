@@ -1,10 +1,10 @@
-import gui as gui
+import gui as app
 
 def main():
 
     # updates the GUI
-    gui.updateDisplay()
-    gui.mainloop()
+    app.updateDisplay()
+    app.mainloop()
 
 if __name__ == "__main__":
     main()

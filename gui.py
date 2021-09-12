@@ -9,8 +9,11 @@ screenSize = '720x720'
 refreshTime = 5000
 appName = 'Library Computer Access Retrieval System'
 host = system.getHostIP()
-lcarsBackground = 'black'
+lcarsBackground = '#000000'
 lcarsLabelColor = '#FFCC99'
+lcarsRedAlertColor = '#F09693'
+lcarsYellowAlertColor = '#F8DC77'
+lcarsAlertSecondaryColor = '#FFFFFF'
 lcarsTimeColor = '#FF9900'
 lcarsStardateColor = '#FFCC99'
 lcarsButtonColor = 'black'
@@ -241,7 +244,7 @@ styleYellowAlert_AlertConditionYellow_Label = Label(
                 frameStyleYellowAlert, 
                 font = (lcarsFont, 70),
                 background = lcarsBackground,
-                foreground = lcarsLabelColor
+                foreground = lcarsYellowAlertColor
             )
 
 styleYellowAlert_AlertConditionYellow_LabelText = 'Alert: Condition Yellow'
@@ -254,7 +257,7 @@ styleYellowAlert_AlertMessage_Label = Label(
                 font = (lcarsFont, 70),
                 wraplength = 700,
                 background = lcarsBackground,
-                foreground = lcarsLabelColor
+                foreground = lcarsAlertSecondaryColor
             )
 
 styleYellowAlert_AlertMessage_LabelText = 'Message text for condition yellow alert'
@@ -262,7 +265,28 @@ styleYellowAlert_AlertMessage_Label.config(
     text = styleYellowAlert_AlertMessage_LabelText.upper()
 )
 
+# Styles for time
+styleYellowAlert_Time_Label = Label(
+                frameStyleYellowAlert, 
+                font = (lcarsFont, 70),
+                background = lcarsBackground,
+                foreground = lcarsYellowAlertColor
+            )
+
+# Styles for the 'star' date
+styleYellowAlert_Stardate_Label = Label(
+                frameStyleYellowAlert, 
+                font = (lcarsFont, 70),
+                background = lcarsBackground,
+                foreground = lcarsYellowAlertColor
+            )
+
 styleYellowAlert_BannerTop = Label(
+    frameStyleYellowAlert,
+    image = yellowAlertBanner,
+    background = lcarsBackground
+)
+styleYellowAlert_BannerBottom = Label(
     frameStyleYellowAlert,
     image = yellowAlertBanner,
     background = lcarsBackground
@@ -275,15 +299,35 @@ styleYellowAlert_BannerTop = Label(
 # Placing clock at the center
 styleYellowAlert_AlertConditionYellow_Label.grid(
     row = 0,
-    column = 0
+    column = 0,
+    columnspan = 2,
+    pady = (30,20)
 )
 styleYellowAlert_BannerTop.grid(
     row = 1,
-    column = 0
+    column = 0,
+    columnspan = 2
 )
 styleYellowAlert_AlertMessage_Label.grid(
     row = 2,
-    column = 0
+    column = 0,
+    columnspan = 2,
+    pady = (30,20)
+)
+styleYellowAlert_BannerBottom.grid(
+    row = 3,
+    column = 0,
+    columnspan = 2
+)
+styleYellowAlert_Time_Label.grid(
+    row = 4,
+    column = 0,
+    pady = (30,20)
+)
+styleYellowAlert_Stardate_Label.grid(
+    row = 4,
+    column = 1,
+    pady = (30,20)
 )
 
 
@@ -292,12 +336,12 @@ styleYellowAlert_AlertMessage_Label.grid(
 ########################
 redAlertBanner = ImageTk.PhotoImage(lcarsRedAlertBanner)
 
-# Styles for label ('Alert: Condition Yellow')
+# Styles for label ('Alert: Condition Red')
 styleRedAlert_AlertConditionRed_Label = Label(
                 frameStyleRedAlert, 
                 font = (lcarsFont, 70),
                 background = lcarsBackground,
-                foreground = lcarsLabelColor
+                foreground = lcarsRedAlertColor
             )
 
 styleRedAlert_AlertConditionRed_LabelText = 'Alert: Condition Red'
@@ -310,7 +354,7 @@ styleRedAlert_AlertMessage_Label = Label(
                 font = (lcarsFont, 70),
                 wraplength = 700,
                 background = lcarsBackground,
-                foreground = lcarsLabelColor
+                foreground = lcarsAlertSecondaryColor
             )
 
 styleRedAlert_AlertMessage_LabelText = 'Message text for condition red alert'
@@ -318,7 +362,29 @@ styleRedAlert_AlertMessage_Label.config(
     text = styleRedAlert_AlertMessage_LabelText.upper()
 )
 
+# Styles for time
+styleRedAlert_Time_Label = Label(
+                frameStyleRedAlert, 
+                font = (lcarsFont, 70),
+                background = lcarsBackground,
+                foreground = lcarsRedAlertColor
+            )
+
+# Styles for the 'star' date
+styleRedAlert_Stardate_Label = Label(
+                frameStyleRedAlert, 
+                font = (lcarsFont, 70),
+                background = lcarsBackground,
+                foreground = lcarsRedAlertColor
+            )
+
 styleRedAlert_BannerTop = Label(
+    frameStyleRedAlert,
+    image = redAlertBanner,
+    background = lcarsBackground
+)
+
+styleRedAlert_BannerBottom = Label(
     frameStyleRedAlert,
     image = redAlertBanner,
     background = lcarsBackground
@@ -331,17 +397,36 @@ styleRedAlert_BannerTop = Label(
 # Placing text at the center
 styleRedAlert_AlertConditionRed_Label.grid(
     row = 0,
-    column = 0
+    column = 0,
+    columnspan = 2,
+    pady = (30,20)
 )
 styleRedAlert_BannerTop.grid(
     row = 1,
-    column = 0
+    column = 0,
+    columnspan = 2
 )
 styleRedAlert_AlertMessage_Label.grid(
     row = 2,
-    column = 0
+    column = 0,
+    columnspan = 2,
+    pady = (30,20)
 )
-
+styleRedAlert_BannerBottom.grid(
+    row = 3,
+    column = 0,
+    columnspan = 2
+)
+styleRedAlert_Time_Label.grid(
+    row = 4,
+    column = 0,
+    pady = (30,20)
+)
+styleRedAlert_Stardate_Label.grid(
+    row = 4,
+    column = 1,
+    pady = (30,20)
+)
 
 def updateClock():
 
@@ -362,6 +447,26 @@ def updateClock():
     styleWordClock_Time_Label.config(
         text = styleWordClock_Time_LabelText.upper(),
         wraplength = 700
+    )
+
+    styleYellowAlert_Time_LabelText = timeNow['numeric']
+    styleYellowAlert_Time_Label.config(
+        text = styleYellowAlert_Time_LabelText
+    )
+
+    styleYellowAlert_Stardate_LabelText = dateNow
+    styleYellowAlert_Stardate_Label.config(
+        text = styleYellowAlert_Stardate_LabelText
+    )
+
+    styleRedAlert_Time_LabelText = timeNow['numeric']
+    styleRedAlert_Time_Label.config(
+        text = styleRedAlert_Time_LabelText
+    )
+
+    styleRedAlert_Stardate_LabelText = dateNow
+    styleRedAlert_Stardate_Label.config(
+        text = styleRedAlert_Stardate_LabelText
     )
 
 # This function is used to display time on the label

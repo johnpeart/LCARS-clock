@@ -30,15 +30,17 @@ app = Tk()
 # Window size and settings
 app.title('LCARS Clock')
 app.geometry(screenSize)
-app.attributes('-fullscreen', True)
+# app.attributes('-fullscreen', True)
 app.config(
     background = lcarsBackground,
     bd = 0
 )
 
 #Define a function
-def endProgramme():
+def endProgramme(e):
    app.destroy()
+
+app.bind('<Escape>', lambda e: endProgramme(e))
 
 #This function is able to create new separate window
 def createNewWindow(title):
@@ -62,10 +64,8 @@ def createNewFrame(window):
 # Windows
 frameAppMessage = createNewFrame(app)
 frameAppHostInfo = createNewFrame(app)
-frameAppExit = createNewFrame(app)
 frameAppMessage.pack(expand = True)
 frameAppHostInfo.pack(expand = True)
-frameAppExit.pack(expand = True)
 
 windowStyleClock = createNewWindow('Numeric clock')
 frameStyleClock = createNewFrame(windowStyleClock)
@@ -74,6 +74,14 @@ frameStyleClock.pack(expand = True)
 windowStyleWordClock = createNewWindow('Word clock')
 frameStyleWordClock = createNewFrame(windowStyleWordClock)
 frameStyleWordClock.pack(expand = True)
+
+windowStyleYellowAlert = createNewWindow('Alert: Condition Yellow')
+frameStyleYellowAlert = createNewFrame(windowStyleYellowAlert)
+frameStyleYellowAlert.pack(expand = True)
+
+windowStyleRedAlert = createNewWindow('Alert: Condition Red')
+frameStyleRedAlert = createNewFrame(windowStyleRedAlert)
+frameStyleRedAlert.pack(expand = True)
 
 ##################################
 # STYLES FOR THE APP ROOT WINDOW #
@@ -120,21 +128,6 @@ app_HostIP_Label = Label(
                 padx = 20
             )
 
-# Styles for exit programme button
-app_EndProgramme_Button = Button(
-                frameAppExit, 
-                font = (lcarsFont, 40),
-                background = lcarsButtonBackground,
-                activebackground = lcarsButtonActiveBackground,
-                foreground = lcarsButtonColor,
-                activeforeground = lcarsButtonActiveColor,
-                highlightthickness = 0,
-                bd = 0,
-                padx = 20,
-                text = 'End progamme'.upper(),
-                command = endProgramme
-            )
-
 ################################
 # GRID FOR THE APP ROOT WINDOW #
 ################################
@@ -163,11 +156,6 @@ app_Hostname_Label.grid(
 app_HostIP_Label.grid(
     row = 0,
     column = 1
-)
-
-app_EndProgramme_Button.grid(
-    row = 0,
-    column = 0
 )
 
 ################################
@@ -240,6 +228,120 @@ styleWordClock_Time_Label.grid(
     row = 1,
     column = 0
 )
+
+
+
+###########################
+# STYLES FOR YELLOW ALERT #
+###########################
+yellowAlertBanner = ImageTk.PhotoImage(lcarsYellowAlertBanner)
+
+# Styles for label ('Alert: Condition Yellow')
+styleYellowAlert_AlertConditionYellow_Label = Label(
+                frameStyleYellowAlert, 
+                font = (lcarsFont, 70),
+                background = lcarsBackground,
+                foreground = lcarsLabelColor
+            )
+
+styleYellowAlert_AlertConditionYellow_LabelText = 'Alert: Condition Yellow'
+styleYellowAlert_AlertConditionYellow_Label.config(
+    text = styleYellowAlert_AlertConditionYellow_LabelText.upper()
+)
+
+styleYellowAlert_AlertMessage_Label = Label(
+                frameStyleYellowAlert, 
+                font = (lcarsFont, 70),
+                wraplength = 700,
+                background = lcarsBackground,
+                foreground = lcarsLabelColor
+            )
+
+styleYellowAlert_AlertMessage_LabelText = 'Message text for condition yellow alert'
+styleYellowAlert_AlertMessage_Label.config(
+    text = styleYellowAlert_AlertMessage_LabelText.upper()
+)
+
+styleYellowAlert_BannerTop = Label(
+    frameStyleYellowAlert,
+    image = yellowAlertBanner,
+    background = lcarsBackground
+)
+    
+#########################
+# GRID FOR YELLOW ALERT #
+#########################
+
+# Placing clock at the center
+styleYellowAlert_AlertConditionYellow_Label.grid(
+    row = 0,
+    column = 0
+)
+styleYellowAlert_BannerTop.grid(
+    row = 1,
+    column = 0
+)
+styleYellowAlert_AlertMessage_Label.grid(
+    row = 2,
+    column = 0
+)
+
+
+########################
+# STYLES FOR RED ALERT #
+########################
+redAlertBanner = ImageTk.PhotoImage(lcarsRedAlertBanner)
+
+# Styles for label ('Alert: Condition Yellow')
+styleRedAlert_AlertConditionRed_Label = Label(
+                frameStyleRedAlert, 
+                font = (lcarsFont, 70),
+                background = lcarsBackground,
+                foreground = lcarsLabelColor
+            )
+
+styleRedAlert_AlertConditionRed_LabelText = 'Alert: Condition Red'
+styleRedAlert_AlertConditionRed_Label.config(
+    text = styleRedAlert_AlertConditionRed_LabelText.upper()
+)
+
+styleRedAlert_AlertMessage_Label = Label(
+                frameStyleRedAlert, 
+                font = (lcarsFont, 70),
+                wraplength = 700,
+                background = lcarsBackground,
+                foreground = lcarsLabelColor
+            )
+
+styleRedAlert_AlertMessage_LabelText = 'Message text for condition red alert'
+styleRedAlert_AlertMessage_Label.config(
+    text = styleRedAlert_AlertMessage_LabelText.upper()
+)
+
+styleRedAlert_BannerTop = Label(
+    frameStyleRedAlert,
+    image = redAlertBanner,
+    background = lcarsBackground
+)
+    
+######################
+# GRID FOR RED ALERT #
+######################
+
+# Placing text at the center
+styleRedAlert_AlertConditionRed_Label.grid(
+    row = 0,
+    column = 0
+)
+styleRedAlert_BannerTop.grid(
+    row = 1,
+    column = 0
+)
+styleRedAlert_AlertMessage_Label.grid(
+    row = 2,
+    column = 0
+)
+
 
 def updateClock():
 

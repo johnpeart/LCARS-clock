@@ -1,5 +1,4 @@
 import gui as gui
-import clock as clock
 
 def main():
 

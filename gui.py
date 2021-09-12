@@ -5,7 +5,7 @@ import clock as clock
 import settings as set
 import system as system
 
-# Variables
+# Variables and Options
 screenSize = '720x720'
 refreshTime = 5000
 appName = 'Library Computer Access Retrieval System'

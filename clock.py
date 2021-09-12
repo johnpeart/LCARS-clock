@@ -1,4 +1,28 @@
-def militaryHour(hour):
+from time import strftime
+
+def clockStyle():
+    
+    clockStyle = 'wordclock'
+
+    return clockStyle
+
+def formatTime():
+
+    # This will format the time as HHMM
+    # i.e. 0900
+    numericTime = strftime('%H%M')
+    wordTime = militaryTimeWords(strftime('%H'), strftime('%M'))
+
+    return {'numeric': numericTime, 'words': wordTime}
+
+def formatDate():
+    # This will format the date as YYYY.MM.DD
+    # i.e. 2021.12.31
+    dateNow = strftime('%Y.%m.%d')
+
+    return dateNow
+
+def militaryHoursWords(hour):
 
     hour = int(hour)
 
@@ -55,7 +79,7 @@ def militaryHour(hour):
 
     return wordHour
 
-def militaryMinute(minute):
+def militaryMinutesWords(minute):
 
     minute = int(minute)
 
@@ -88,8 +112,8 @@ def militaryMinute(minute):
 
     return wordMinute
 
-def militaryTime(hour, minute):
+def militaryTimeWords(hour, minute):
 
-    wordTime = militaryHour(hour) + ' ' + militaryMinute(minute) + ' hours'
+    wordTime = militaryHoursWords(hour) + ' ' + militaryMinutesWords(minute) + ' hours'
 
     return wordTime

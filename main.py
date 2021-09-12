@@ -1,14 +1,11 @@
-import chooseDisplay as choose
-import showDisplay as display
-
+import gui as gui
+import clock as clock
 
 def main():
-    # determines what to show
-    displayType = choose.displayType() 
-    # sets up what the display will show
-    display.updateDisplay(displayType)
+
     # updates the GUI
-    display.mainloop()
+    gui.updateDisplay()
+    gui.mainloop()
 
 if __name__ == "__main__":
     main()

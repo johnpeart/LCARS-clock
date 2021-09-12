@@ -23,3 +23,22 @@ The layout of the clock is user selectable by changing the `settings.py` file.
 The app also shows alerts at during certain time periods. These are defined in the `alerts.py` file.
 
 When an alert is shown on screen, the clock will be minimised to the bottom of the screen and the date and time will be shown in numeric format at the bottom of the screen.
+
+## Perspex cover and mount
+
+The physical device consists of:
+
+- a printed perspex cover with a transparent window through which a display can be seen
+- a 3d printed mount, with the same width and height of the perspex, which houses the electronics
+- a HyperPixel 4 square display (72mm x 72mm screen size)
+- a Raspberry Pi Zero W
+
+### Perspex
+
+The cover perspex design was adapted from the design by Ray Koopa and found on [Wikipedia](https://en.wikipedia.org/wiki/LCARS#/media/File:Lcars_wallpaper.svg).
+
+A PDF, PNG and SVG file of the design can be found in the `assets/perspex` folder.
+
+### 3d mount
+
+The STL file for the 3D mount can be found in the `assets/3d-models` folder.

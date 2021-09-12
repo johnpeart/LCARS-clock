@@ -1,5 +1,4 @@
 from time import strftime
-import settings as set
 
 def formatTime():
 

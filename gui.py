@@ -2,18 +2,26 @@ from tkinter import *
 from PIL import ImageTk, Image  
 
 import clock as clock
+import system as system
 
 # Variables
 screenSize = '720x720'
 refreshTime = 5000
 appName = 'Library Computer Access Retrieval System'
+host = system.getHostIP()
 lcarsBackground = 'black'
 lcarsLabelColor = '#FFCC99'
 lcarsTimeColor = '#FF9900'
 lcarsStardateColor = '#FFCC99'
+lcarsButtonColor = 'black'
+lcarsButtonBackground = '#9977AA'
+lcarsButtonActiveColor = 'black'
+lcarsButtonActiveBackground = '#FFCC99'
 lcarsFont = 'Context Ultra Condensed SSi'
 
 # Assets
+lcarsDefaultBanner = Image.open('assets/images/default-banner.png')
+lcarsYellowAlertBanner = Image.open('assets/images/yellow-alert-banner.png')
 lcarsRedAlertBanner = Image.open('assets/images/red-alert-banner.png')
 
 # Create tkinter window
@@ -22,11 +30,15 @@ app = Tk()
 # Window size and settings
 app.title('LCARS Clock')
 app.geometry(screenSize)
-# app.attributes('-fullscreen', True)
+app.attributes('-fullscreen', True)
 app.config(
     background = lcarsBackground,
     bd = 0
 )
+
+#Define a function
+def endProgramme():
+   app.destroy()
 
 #This function is able to create new separate window
 def createNewWindow(title):
@@ -48,8 +60,12 @@ def createNewFrame(window):
     return frame
 
 # Windows
-frameAppRoot = createNewFrame(app)
-frameAppRoot.pack(expand = True)
+frameAppMessage = createNewFrame(app)
+frameAppHostInfo = createNewFrame(app)
+frameAppExit = createNewFrame(app)
+frameAppMessage.pack(expand = True)
+frameAppHostInfo.pack(expand = True)
+frameAppExit.pack(expand = True)
 
 windowStyleClock = createNewWindow('Numeric clock')
 frameStyleClock = createNewFrame(windowStyleClock)
@@ -62,46 +78,95 @@ frameStyleWordClock.pack(expand = True)
 ##################################
 # STYLES FOR THE APP ROOT WINDOW #
 ##################################
-redAlertBanner = ImageTk.PhotoImage(lcarsRedAlertBanner)
+defaultBanner = ImageTk.PhotoImage(lcarsDefaultBanner)
 
-app_RedAlertBannerTop = Label(
-    frameAppRoot,
-    image = redAlertBanner,
+app_DefaultBannerTop = Label(
+    frameAppMessage,
+    image = defaultBanner,
     background = lcarsBackground
 )
-app_RedAlertBannerBottom = Label(
-    frameAppRoot,
-    image = redAlertBanner,
+app_DefaultBannerBottom = Label(
+    frameAppMessage,
+    image = defaultBanner,
     background = lcarsBackground
 )
 
-# Styles for time
+# Styles for app name
 app_Message_Label = Label(
-                frameAppRoot, 
+                frameAppMessage, 
                 font = (lcarsFont, 100),
                 background = lcarsBackground,
-                foreground = lcarsTimeColor,
+                foreground = lcarsLabelColor,
                 wraplength = 700,
-                text = appName.upper(),
-                pady = 20
+                text = appName.upper()
+            )
+
+# Styles for device host and IP
+app_Hostname_Label = Label(
+                frameAppHostInfo, 
+                font = (lcarsFont, 40),
+                background = lcarsBackground,
+                foreground = lcarsTimeColor,
+                text = host['hostname'].upper(),
+                padx = 20
+            )
+
+app_HostIP_Label = Label(
+                frameAppHostInfo, 
+                font = (lcarsFont, 40),
+                background = lcarsBackground,
+                foreground = lcarsTimeColor,
+                text = host['ipaddress'].upper(),
+                padx = 20
+            )
+
+# Styles for exit programme button
+app_EndProgramme_Button = Button(
+                frameAppExit, 
+                font = (lcarsFont, 40),
+                background = lcarsButtonBackground,
+                activebackground = lcarsButtonActiveBackground,
+                foreground = lcarsButtonColor,
+                activeforeground = lcarsButtonActiveColor,
+                highlightthickness = 0,
+                bd = 0,
+                padx = 20,
+                text = 'End progamme'.upper(),
+                command = endProgramme
             )
 
 ################################
 # GRID FOR THE APP ROOT WINDOW #
 ################################
 
-app_RedAlertBannerTop.grid(
+app_DefaultBannerTop.grid(
     row = 0,
     column = 0
 )
 
 app_Message_Label.grid(
     row = 1,
+    column = 0,
+    pady = (60,40)
+)
+
+app_DefaultBannerBottom.grid(
+    row = 2,
     column = 0
 )
 
-app_RedAlertBannerBottom.grid(
-    row = 2,
+app_Hostname_Label.grid(
+    row = 0,
+    column = 0
+)
+
+app_HostIP_Label.grid(
+    row = 0,
+    column = 1
+)
+
+app_EndProgramme_Button.grid(
+    row = 0,
     column = 0
 )
 

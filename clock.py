@@ -4,7 +4,7 @@ def formatTime():
 
     # This will format the time as HHMM
     # i.e. 0900
-    numericTime = strftime('%H%M%S')
+    numericTime = strftime('%H%M')
     wordTime = militaryTimeWords(strftime('%H'), strftime('%M'))
 
     return {'numeric': numericTime, 'words': wordTime}

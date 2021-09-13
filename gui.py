@@ -1,94 +1,43 @@
 from tkinter import *
 from PIL import ImageTk, Image  
 
+import windowManagement as new
 import clock as clock
-import settings as set
+from settings import options, defaults
 import system as system
 
 # Variables and Options
 screenSize = '720x720'
 refreshTime = 5000
-appName = 'Library Computer Access Retrieval System'
+
 host = system.getHostIP()
-clockStyle = set.options['style']
-lcarsBackground = '#000000'
-lcarsLabelColor = '#FFCC99'
-lcarsRedAlertColor = '#F09693'
-lcarsYellowAlertColor = '#F8DC77'
-lcarsAlertSecondaryColor = '#FFFFFF'
-lcarsTimeColor = '#FF9900'
-lcarsStardateColor = '#FFCC99'
-lcarsButtonColor = 'black'
-lcarsButtonBackground = '#9977AA'
-lcarsButtonActiveColor = 'black'
-lcarsButtonActiveBackground = '#FFCC99'
-lcarsFont = 'Context Ultra Condensed SSi'
+clockStyle = options['clockStyle']
 
 # Assets
 lcarsDefaultBanner = Image.open('assets/images/default-banner.png')
 lcarsYellowAlertBanner = Image.open('assets/images/yellow-alert-banner.png')
 lcarsRedAlertBanner = Image.open('assets/images/red-alert-banner.png')
 
-# Create tkinter window
-app = Tk()
-
-# Window size and settings
-app.title('LCARS Clock')
-app.geometry(screenSize)
-# app.attributes('-fullscreen', True)
-app.config(
-    background = lcarsBackground,
-    bd = 0
-)
-
-#Define a function
-def endProgramme(e):
-   app.destroy()
-
-app.bind('<Escape>', lambda e: endProgramme(e))
-
-#This function is able to create new separate window
-def createNewWindow(title):
-    window = Toplevel()
-    window.title(title)
-    window.geometry(screenSize)
-    window.config(
-        background = lcarsBackground
-    )
-
-    return window
-
-def createNewFrame(window):
-    frame = Frame(
-        window,
-        background = lcarsBackground
-    )
-
-    return frame
-
 # Windows
-frameAppRoot = createNewFrame(app)
-frameAppRoot.pack(expand = True)
+app = new.app(defaults['appName'])
+frameAppRoot = new.container(app)
 
-windowSettings = createNewWindow('Operations')
-frameSettings = createNewFrame(windowSettings)
-frameSettings.pack(expand = True)
+windowSettings = new.window('Operations')
+frameSettings = new.container(windowSettings)
 
-windowStyleClock = createNewWindow('Numeric clock')
-frameStyleClock = createNewFrame(windowStyleClock)
-frameStyleClock.pack(expand = True)
+windowStyleClock = new.window('Numeric clock')
+frameStyleClock = new.container(windowStyleClock)
 
-windowStyleWordClock = createNewWindow('Word clock')
-frameStyleWordClock = createNewFrame(windowStyleWordClock)
-frameStyleWordClock.pack(expand = True)
+windowStyleWordClock = new.window('Word clock')
+frameStyleWordClock = new.container(windowStyleWordClock)
 
-windowStyleYellowAlert = createNewWindow('Alert: Condition Yellow')
-frameStyleYellowAlert = createNewFrame(windowStyleYellowAlert)
-frameStyleYellowAlert.pack(expand = True)
+windowStyleYellowAlert = new.window('Alert: Condition Yellow')
+frameStyleYellowAlert = new.container(windowStyleYellowAlert)
 
-windowStyleRedAlert = createNewWindow('Alert: Condition Red')
-frameStyleRedAlert = createNewFrame(windowStyleRedAlert)
-frameStyleRedAlert.pack(expand = True)
+windowStyleRedAlert = new.window('Alert: Condition Red')
+frameStyleRedAlert = new.container(windowStyleRedAlert)
+
+
 
 ##################################
 # STYLES FOR THE APP ROOT WINDOW #
@@ -98,39 +47,39 @@ defaultBanner = ImageTk.PhotoImage(lcarsDefaultBanner)
 app_DefaultBannerTop = Label(
     frameAppRoot,
     image = defaultBanner,
-    background = lcarsBackground
+    background = defaults['windowBackground']
 )
 app_DefaultBannerBottom = Label(
     frameAppRoot,
     image = defaultBanner,
-    background = lcarsBackground
+    background = defaults['windowBackground']
 )
 
 # Styles for app name
 app_Message_Label = Label(
                 frameAppRoot, 
-                font = (lcarsFont, 100),
-                background = lcarsBackground,
-                foreground = lcarsLabelColor,
+                font = (defaults['fontFace'], 100),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Label'],
                 wraplength = 700,
-                text = appName.upper()
+                text = defaults['appName'].upper()
             )
 
 # Styles for device host and IP
 app_Hostname_Label = Label(
                 frameAppRoot, 
-                font = (lcarsFont, 40),
-                background = lcarsBackground,
-                foreground = lcarsTimeColor,
+                font = (defaults['fontFace'], 40),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Time'],
                 text = host['hostname'].upper(),
                 padx = 20
             )
 
 app_HostIP_Label = Label(
                 frameAppRoot, 
-                font = (lcarsFont, 40),
-                background = lcarsBackground,
-                foreground = lcarsTimeColor,
+                font = (defaults['fontFace'], 40),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Time'],
                 text = host['ipaddress'].upper(),
                 padx = 20
             )
@@ -177,74 +126,74 @@ app_HostIP_Label.grid(
 settings_DefaultBannerTop = Label(
     frameSettings,
     image = defaultBanner,
-    background = lcarsBackground
+    background = defaults['windowBackground']
 )
 settings_DefaultBannerBottom = Label(
     frameSettings,
     image = defaultBanner,
-    background = lcarsBackground
+    background = defaults['windowBackground']
 )
 
 # Styles for label ('Operations')
 settings_Label = Label(
                 frameSettings, 
-                font = (lcarsFont, 70),
-                background = lcarsBackground,
-                foreground = lcarsLabelColor,
+                font = (defaults['fontFace'], 70),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Label'],
                 text = 'Operations'.upper()
             )
 
 # Styles for device host and IP
 settings_Hostname_Label = Label(
                 frameSettings, 
-                font = (lcarsFont, 40),
-                background = lcarsBackground,
-                foreground = lcarsLabelColor,
+                font = (defaults['fontFace'], 40),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Label'],
                 text = 'Hostname'.upper(),
                 padx = 20
             )
 
 settings_Hostname_Details_Label = Label(
                 frameSettings, 
-                font = (lcarsFont, 40),
-                background = lcarsBackground,
-                foreground = lcarsTimeColor,
+                font = (defaults['fontFace'], 40),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Time'],
                 text = host['hostname'].upper(),
                 padx = 20
             )
 
 settings_HostIP_Label = Label(
                 frameSettings, 
-                font = (lcarsFont, 40),
-                background = lcarsBackground,
-                foreground = lcarsLabelColor,
+                font = (defaults['fontFace'], 40),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Label'],
                 text = 'IP address'.upper(),
                 padx = 20
             )
 
 settings_HostIP_Details_Label = Label(
                 frameSettings, 
-                font = (lcarsFont, 40),
-                background = lcarsBackground,
-                foreground = lcarsTimeColor,
+                font = (defaults['fontFace'], 40),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Time'],
                 text = host['ipaddress'].upper(),
                 padx = 20
             )
 
 settings_ClockStyle_Label = Label(
                 frameSettings, 
-                font = (lcarsFont, 40),
-                background = lcarsBackground,
-                foreground = lcarsLabelColor,
+                font = (defaults['fontFace'], 40),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Label'],
                 text = 'Clock style'.upper(),
                 padx = 20
             )
 
 settings_ClockStyle_Details_Label = Label(
                 frameSettings, 
-                font = (lcarsFont, 40),
-                background = lcarsBackground,
-                foreground = lcarsTimeColor,
+                font = (defaults['fontFace'], 40),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Time'],
                 text = clockStyle.upper(),
                 padx = 20
             )
@@ -315,17 +264,17 @@ settings_DefaultBannerBottom.grid(
 # Styles for time
 styleClock_Time_Label = Label(
                 frameStyleClock, 
-                font = (lcarsFont, 340),
-                background = lcarsBackground,
-                foreground = lcarsTimeColor
+                font = (defaults['fontFace'], 340),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Time']
             )
 
 # Styles for the 'star' date
 styleClock_Stardate_Label = Label(
                 frameStyleClock, 
-                font = (lcarsFont, 140),
-                background = lcarsBackground,
-                foreground = lcarsStardateColor
+                font = (defaults['fontFace'], 140),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Date']
             )
 
 ##############################
@@ -348,9 +297,9 @@ styleClock_Stardate_Label.grid(
 # Styles for label ('The time is')
 styleWordClock_TheTimeIs_Label = Label(
                 frameStyleWordClock, 
-                font = (lcarsFont, 100),
-                background = lcarsBackground,
-                foreground = lcarsLabelColor
+                font = (defaults['fontFace'], 100),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Label']
             )
 
 styleWordClock_TheTimeIs_LabelText = 'The time is'
@@ -361,9 +310,9 @@ styleWordClock_TheTimeIs_Label.config(
 # Styles for time
 styleWordClock_Time_Label = Label(
                 frameStyleWordClock, 
-                font = (lcarsFont, 100),
-                background = lcarsBackground,
-                foreground = lcarsTimeColor
+                font = (defaults['fontFace'], 100),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_Time']
             )
     
 ###########################
@@ -390,18 +339,18 @@ yellowAlertBanner = ImageTk.PhotoImage(lcarsYellowAlertBanner)
 # Styles for label ('Alert: Condition Yellow')
 styleYellowAlert_AlertConditionYellow_Label = Label(
                 frameStyleYellowAlert, 
-                font = (lcarsFont, 70),
-                background = lcarsBackground,
-                foreground = lcarsYellowAlertColor,
+                font = (defaults['fontFace'], 70),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_YellowAlert'],
                 text = 'Alert: Condition Yellow'.upper()
             )
 
 styleYellowAlert_AlertMessage_Label = Label(
                 frameStyleYellowAlert, 
-                font = (lcarsFont, 70),
+                font = (defaults['fontFace'], 70),
                 wraplength = 700,
-                background = lcarsBackground,
-                foreground = lcarsAlertSecondaryColor
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_AlertSecondary']
             )
 
 styleYellowAlert_AlertMessage_LabelText = 'Message text for condition yellow alert'
@@ -412,28 +361,28 @@ styleYellowAlert_AlertMessage_Label.config(
 # Styles for time
 styleYellowAlert_Time_Label = Label(
                 frameStyleYellowAlert, 
-                font = (lcarsFont, 70),
-                background = lcarsBackground,
-                foreground = lcarsYellowAlertColor
+                font = (defaults['fontFace'], 70),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_YellowAlert']
             )
 
 # Styles for the 'star' date
 styleYellowAlert_Stardate_Label = Label(
                 frameStyleYellowAlert, 
-                font = (lcarsFont, 70),
-                background = lcarsBackground,
-                foreground = lcarsYellowAlertColor
+                font = (defaults['fontFace'], 70),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_YellowAlert']
             )
 
 styleYellowAlert_BannerTop = Label(
     frameStyleYellowAlert,
     image = yellowAlertBanner,
-    background = lcarsBackground
+    background = defaults['windowBackground']
 )
 styleYellowAlert_BannerBottom = Label(
     frameStyleYellowAlert,
     image = yellowAlertBanner,
-    background = lcarsBackground
+    background = defaults['windowBackground']
 )
     
 #########################
@@ -483,9 +432,9 @@ redAlertBanner = ImageTk.PhotoImage(lcarsRedAlertBanner)
 # Styles for label ('Alert: Condition Red')
 styleRedAlert_AlertConditionRed_Label = Label(
                 frameStyleRedAlert, 
-                font = (lcarsFont, 70),
-                background = lcarsBackground,
-                foreground = lcarsRedAlertColor
+                font = (defaults['fontFace'], 70),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_RedAlert']
             )
 
 styleRedAlert_AlertConditionRed_LabelText = 'Alert: Condition Red'
@@ -495,10 +444,10 @@ styleRedAlert_AlertConditionRed_Label.config(
 
 styleRedAlert_AlertMessage_Label = Label(
                 frameStyleRedAlert, 
-                font = (lcarsFont, 70),
+                font = (defaults['fontFace'], 70),
                 wraplength = 700,
-                background = lcarsBackground,
-                foreground = lcarsAlertSecondaryColor
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_AlertSecondary']
             )
 
 styleRedAlert_AlertMessage_LabelText = 'Message text for condition red alert'
@@ -509,29 +458,29 @@ styleRedAlert_AlertMessage_Label.config(
 # Styles for time
 styleRedAlert_Time_Label = Label(
                 frameStyleRedAlert, 
-                font = (lcarsFont, 70),
-                background = lcarsBackground,
-                foreground = lcarsRedAlertColor
+                font = (defaults['fontFace'], 70),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_RedAlert']
             )
 
 # Styles for the 'star' date
 styleRedAlert_Stardate_Label = Label(
                 frameStyleRedAlert, 
-                font = (lcarsFont, 70),
-                background = lcarsBackground,
-                foreground = lcarsRedAlertColor
+                font = (defaults['fontFace'], 70),
+                background = defaults['windowBackground'],
+                foreground = defaults['textColor_RedAlert']
             )
 
 styleRedAlert_BannerTop = Label(
     frameStyleRedAlert,
     image = redAlertBanner,
-    background = lcarsBackground
+    background = defaults['windowBackground']
 )
 
 styleRedAlert_BannerBottom = Label(
     frameStyleRedAlert,
     image = redAlertBanner,
-    background = lcarsBackground
+    background = defaults['windowBackground']
 )
     
 ######################

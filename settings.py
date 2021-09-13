@@ -2,7 +2,8 @@ options = {
     # You can set the clock style to be EITHER
     # - "numeric" - for number-formatted time and date e.g. 0900, 2021.01.31
     # - "words" - for a word-formatted time only e.g. zero-nine hundred hours
-    'clockStyle': 'numeric'
+    'clockStyle': 'numeric',
+    'refreshTime': 5000
 }
 
 defaults = {
@@ -27,6 +28,11 @@ defaults = {
 
     ## FONTS AND TYPOGRAPHY
     'fontFace': 'Context Ultra Condensed SSi',
+
+    ## IMAGES
+    'horizontalRule_Default': 'assets/images/default-banner.png',
+    'horizontalRule_YellowAlert': 'assets/images/yellow-alert-banner.png',
+    'horizontalRule_RedAlert': 'assets/images/red-alert-banner.png',
 
     ## OTHER STYLES
     'borderWidth': 0

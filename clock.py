@@ -1,5 +1,12 @@
 from time import strftime
 
+def updateLabel(labelToUpdate, textToShow):
+    text = textToShow
+    labelToUpdate.config(
+        text = text.upper(),
+        wraplength = 700
+    )
+
 def formatTime():
 
     # This will format the time as HHMM

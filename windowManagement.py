@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk, Toplevel, Frame
 from settings import defaults
 
 #This function creates the root window for the app

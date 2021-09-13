@@ -6,17 +6,7 @@ import clock as clock
 from settings import options, defaults
 import system as system
 
-# Variables and Options
-screenSize = '720x720'
-refreshTime = 5000
-
 host = system.getHostIP()
-clockStyle = options['clockStyle']
-
-# Assets
-lcarsDefaultBanner = Image.open('assets/images/default-banner.png')
-lcarsYellowAlertBanner = Image.open('assets/images/yellow-alert-banner.png')
-lcarsRedAlertBanner = Image.open('assets/images/red-alert-banner.png')
 
 # Windows
 app = new.app(defaults['appName'])
@@ -37,11 +27,10 @@ frameStyleYellowAlert = new.container(windowStyleYellowAlert)
 windowStyleRedAlert = new.window('Alert: Condition Red')
 frameStyleRedAlert = new.container(windowStyleRedAlert)
 
-
-
 ##################################
 # STYLES FOR THE APP ROOT WINDOW #
 ##################################
+lcarsDefaultBanner = Image.open(defaults['horizontalRule_Default'])
 defaultBanner = ImageTk.PhotoImage(lcarsDefaultBanner)
 
 app_DefaultBannerTop = Label(
@@ -194,7 +183,7 @@ settings_ClockStyle_Details_Label = Label(
                 font = (defaults['fontFace'], 40),
                 background = defaults['windowBackground'],
                 foreground = defaults['textColor_Time'],
-                text = clockStyle.upper(),
+                text = options["clockStyle"].upper(),
                 padx = 20
             )
 
@@ -334,6 +323,7 @@ styleWordClock_Time_Label.grid(
 ###########################
 # STYLES FOR YELLOW ALERT #
 ###########################
+lcarsYellowAlertBanner = Image.open(defaults['horizontalRule_YellowAlert'])
 yellowAlertBanner = ImageTk.PhotoImage(lcarsYellowAlertBanner)
 
 # Styles for label ('Alert: Condition Yellow')
@@ -427,6 +417,7 @@ styleYellowAlert_Stardate_Label.grid(
 ########################
 # STYLES FOR RED ALERT #
 ########################
+lcarsRedAlertBanner = Image.open(defaults['horizontalRule_RedAlert'])
 redAlertBanner = ImageTk.PhotoImage(lcarsRedAlertBanner)
 
 # Styles for label ('Alert: Condition Red')
@@ -526,41 +517,13 @@ def updateClock():
     timeNow = clock.formatTime()
     dateNow = clock.formatDate()
 
-    styleClock_Time_LabelText = timeNow['numeric']
-    styleClock_Time_Label.config(
-        text = styleClock_Time_LabelText
-    )
-
-    styleClock_Stardate_LabelText = dateNow
-    styleClock_Stardate_Label.config(
-        text = styleClock_Stardate_LabelText
-    )
-    
-    styleWordClock_Time_LabelText = timeNow['words']
-    styleWordClock_Time_Label.config(
-        text = styleWordClock_Time_LabelText.upper(),
-        wraplength = 700
-    )
-
-    styleYellowAlert_Time_LabelText = timeNow['numeric']
-    styleYellowAlert_Time_Label.config(
-        text = styleYellowAlert_Time_LabelText
-    )
-
-    styleYellowAlert_Stardate_LabelText = dateNow
-    styleYellowAlert_Stardate_Label.config(
-        text = styleYellowAlert_Stardate_LabelText
-    )
-
-    styleRedAlert_Time_LabelText = timeNow['numeric']
-    styleRedAlert_Time_Label.config(
-        text = styleRedAlert_Time_LabelText
-    )
-
-    styleRedAlert_Stardate_LabelText = dateNow
-    styleRedAlert_Stardate_Label.config(
-        text = styleRedAlert_Stardate_LabelText
-    )
+    clock.updateLabel(styleClock_Time_Label, timeNow['numeric'])
+    clock.updateLabel(styleClock_Stardate_Label, dateNow)
+    clock.updateLabel(styleWordClock_Time_Label, timeNow['words'])
+    clock.updateLabel(styleYellowAlert_Time_Label, timeNow['numeric'])
+    clock.updateLabel(styleYellowAlert_Stardate_Label, dateNow)
+    clock.updateLabel(styleRedAlert_Time_Label, timeNow['numeric'])
+    clock.updateLabel(styleRedAlert_Stardate_Label, dateNow)
 
 # This function is used to display time on the label
 def updateDisplay():
@@ -570,7 +533,7 @@ def updateDisplay():
     updateClock()
 
     app.after(
-        refreshTime, 
+        options['refreshTime'], 
         updateDisplay
     )
         

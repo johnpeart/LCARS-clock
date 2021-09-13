@@ -77,30 +77,32 @@ def militaryMinutesWords(minute):
 
     minute = int(minute)
 
-    if minute >= 0 and minute <= 4:
+    if minute >= 0 and minute <= 2:
         wordMinute = 'hundred'
-    elif minute >= 5 and minute <= 9:
+    elif minute >= 3 and minute <= 6:
         wordMinute = 'zero-five'
-    elif minute >= 10 and minute <= 14:
+    elif minute >= 7 and minute <= 12:
         wordMinute = 'ten'
-    elif minute >= 15 and minute <= 19:
+    elif minute >= 13 and minute <= 16:
         wordMinute = 'fifteen'
-    elif minute >= 20 and minute <= 24:
+    elif minute >= 17 and minute <= 22:
         wordMinute = 'twenty'
-    elif minute >= 25 and minute <= 29:
+    elif minute >= 23 and minute <= 26:
         wordMinute = 'twenty-five'
-    elif minute >= 30 and minute <= 34:
+    elif minute >= 27 and minute <= 32:
         wordMinute = 'thirty'
-    elif minute >= 35 and minute <= 39:
+    elif minute >= 33 and minute <= 36:
         wordMinute = 'thirty-five'
-    elif minute >= 40 and minute <= 44:
+    elif minute >= 37 and minute <= 42:
         wordMinute = 'forty'
-    elif minute >= 45 and minute <= 49:
+    elif minute >= 43 and minute <= 46:
         wordMinute = 'forty-five'
-    elif minute >= 50 and minute <= 54:
+    elif minute >= 47 and minute <= 52:
         wordMinute = 'fifty'
-    elif minute >= 55 and minute <= 59:
+    elif minute >= 53 and minute <= 56:
         wordMinute = 'fifty-five'
+    elif minute >= 57 and minute <= 60:
+        wordMinute = 'hundred'
     else:
         wordMinute = 'hundred'
 

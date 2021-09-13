@@ -2,6 +2,8 @@ from tkinter import *
 from PIL import ImageTk, Image  
 
 import windowManagement as new
+import window_root as appRoot
+import window_settings as appSettings
 import clock as clock
 from settings import options, defaults
 import system as system
@@ -27,225 +29,14 @@ frameStyleYellowAlert = new.container(windowStyleYellowAlert)
 windowStyleRedAlert = new.window('Alert: Condition Red')
 frameStyleRedAlert = new.container(windowStyleRedAlert)
 
-##################################
-# STYLES FOR THE APP ROOT WINDOW #
-##################################
+######################################################
+# STYLES FOR THE APP ROOT WINDOW AND SETTINGS WINDOW #
+######################################################
 lcarsDefaultBanner = Image.open(defaults['horizontalRule_Default'])
 defaultBanner = ImageTk.PhotoImage(lcarsDefaultBanner)
 
-app_DefaultBannerTop = Label(
-    frameAppRoot,
-    image = defaultBanner,
-    background = defaults['windowBackground']
-)
-app_DefaultBannerBottom = Label(
-    frameAppRoot,
-    image = defaultBanner,
-    background = defaults['windowBackground']
-)
-
-# Styles for app name
-app_Message_Label = Label(
-                frameAppRoot, 
-                font = (defaults['fontFace'], 100),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Label'],
-                wraplength = 700,
-                text = defaults['appName'].upper()
-            )
-
-# Styles for device host and IP
-app_Hostname_Label = Label(
-                frameAppRoot, 
-                font = (defaults['fontFace'], 40),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Time'],
-                text = host['hostname'].upper(),
-                padx = 20
-            )
-
-app_HostIP_Label = Label(
-                frameAppRoot, 
-                font = (defaults['fontFace'], 40),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Time'],
-                text = host['ipaddress'].upper(),
-                padx = 20
-            )
-
-################################
-# GRID FOR THE APP ROOT WINDOW #
-################################
-
-app_DefaultBannerTop.grid(
-    row = 0,
-    column = 0,
-    columnspan = 2
-)
-
-app_Message_Label.grid(
-    row = 1,
-    column = 0,
-    pady = (60,40),
-    columnspan = 2
-)
-
-app_DefaultBannerBottom.grid(
-    row = 2,
-    column = 0,
-    columnspan = 2
-)
-
-app_Hostname_Label.grid(
-    row = 3,
-    column = 0,
-    pady = (60, 0)
-)
-
-app_HostIP_Label.grid(
-    row = 3,
-    column = 1,
-    pady = (60, 0)
-)
-
-##################################
-# STYLES FOR THE SETTINGS WINDOW #
-##################################
-
-settings_DefaultBannerTop = Label(
-    frameSettings,
-    image = defaultBanner,
-    background = defaults['windowBackground']
-)
-settings_DefaultBannerBottom = Label(
-    frameSettings,
-    image = defaultBanner,
-    background = defaults['windowBackground']
-)
-
-# Styles for label ('Operations')
-settings_Label = Label(
-                frameSettings, 
-                font = (defaults['fontFace'], 70),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Label'],
-                text = 'Operations'.upper()
-            )
-
-# Styles for device host and IP
-settings_Hostname_Label = Label(
-                frameSettings, 
-                font = (defaults['fontFace'], 40),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Label'],
-                text = 'Hostname'.upper(),
-                padx = 20
-            )
-
-settings_Hostname_Details_Label = Label(
-                frameSettings, 
-                font = (defaults['fontFace'], 40),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Time'],
-                text = host['hostname'].upper(),
-                padx = 20
-            )
-
-settings_HostIP_Label = Label(
-                frameSettings, 
-                font = (defaults['fontFace'], 40),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Label'],
-                text = 'IP address'.upper(),
-                padx = 20
-            )
-
-settings_HostIP_Details_Label = Label(
-                frameSettings, 
-                font = (defaults['fontFace'], 40),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Time'],
-                text = host['ipaddress'].upper(),
-                padx = 20
-            )
-
-settings_ClockStyle_Label = Label(
-                frameSettings, 
-                font = (defaults['fontFace'], 40),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Label'],
-                text = 'Clock style'.upper(),
-                padx = 20
-            )
-
-settings_ClockStyle_Details_Label = Label(
-                frameSettings, 
-                font = (defaults['fontFace'], 40),
-                background = defaults['windowBackground'],
-                foreground = defaults['textColor_Time'],
-                text = options["clockStyle"].upper(),
-                padx = 20
-            )
-
-################################
-# GRID FOR THE SETTINGS WINDOW #
-################################
-
-settings_Label.grid(
-    row = 0,
-    column = 0,
-    columnspan = 2,
-    pady = (40, 20)
-)
-
-settings_DefaultBannerTop.grid(
-    row = 1,
-    column = 0,
-    columnspan = 2
-)
-
-settings_Hostname_Label.grid(
-    row = 2,
-    column = 0,
-    pady = (20, 0)
-)
-
-settings_Hostname_Details_Label.grid(
-    row = 2,
-    column = 1,
-    pady = (20, 0)
-)
-
-settings_HostIP_Label.grid(
-    row = 3,
-    column = 0,
-    pady = (20, 0)
-)
-
-settings_HostIP_Details_Label.grid(
-    row = 3,
-    column = 1,
-    pady = (20, 0)
-)
-
-settings_ClockStyle_Label.grid(
-    row = 4,
-    column = 0,
-    pady = (20, 0)
-)
-
-settings_ClockStyle_Details_Label.grid(
-    row = 4,
-    column = 1,
-    pady = (20, 0)
-)
-
-settings_DefaultBannerBottom.grid(
-    row = 5,
-    column = 0,
-    columnspan = 2
-)
-
+appRoot.format(frameAppRoot, defaultBanner, host)
+appSettings.format(frameSettings, defaultBanner, host)
 
 ################################
 # STYLES FOR THE NUMERIC CLOCK #

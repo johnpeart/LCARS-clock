@@ -7,7 +7,7 @@ The LCARS Clock is a custom-made clock. It consists of:
 
 ## The app
 
-Th Python app displays the time and alerts in the style of the Star Trek LCARS interface.
+The Python app displays the time and alerts in the style of the Star Trek LCARS interface.
 
 ### Clock
 

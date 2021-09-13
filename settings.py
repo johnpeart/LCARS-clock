@@ -15,7 +15,9 @@ defaults = {
     ## SCREEN SIZE / WINDOW SIZE
     ## The screen size assumes a HyperPixel 4 Square is being used
     'screenSize': '720x720',
-    'fullScreen': True,
+    'screenWidth': 720,
+    'screenHeight': 720,
+    'fullScreen': False,
 
     ## COLOURS
     'windowBackground': '#000000',

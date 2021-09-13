@@ -1,4 +1,5 @@
 from tkinter import Tk, Toplevel, Frame
+from tkinter.constants import ANCHOR
 from settings import defaults
 
 #This function creates the root window for the app
@@ -13,13 +14,18 @@ def app(title):
         bd = defaults['borderWidth']
     )
 
-    # Bind the Escape key to the endProgramme function
-    app.bind('<Escape>', lambda e: endProgramme(e))
-
+    # FUNCTIONS TO MANIPULATE THE FRAME
     # Function to exit the programme
     def endProgramme(e):
+        print('Computer, end programme')
         app.destroy()
 
+    def toggleFrame(e):
+        print('Toggle frame')
+
+    # Bind the Escape key to the endProgramme function
+    app.bind('<Escape>', endProgramme)
+    app.bind('<1>', toggleFrame)
 
     return app
 
@@ -29,6 +35,8 @@ def window(title):
     window.title(title)
     window.geometry(defaults['screenSize'])
     window.config(
+        width = defaults['screenWidth'],
+        height = defaults['screenHeight'],
         background = defaults['windowBackground']
     )
     window.attributes('-fullscreen', defaults['fullScreen'])
@@ -40,8 +48,10 @@ def window(title):
 def container(window):
     container = Frame(
         window,
+        width = defaults['screenWidth'],
+        height = defaults['screenHeight'],
         background = defaults['windowBackground']
     )
-    container.pack(expand = True)
+    container.place(relx = 0.5, rely = 0.5, anchor = 'center')
 
     return container

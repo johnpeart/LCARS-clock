@@ -3,7 +3,7 @@ options = {
     # - "numeric" - for number-formatted time and date e.g. 0900, 2021.01.31
     # - "words" - for a word-formatted time only e.g. zero-nine hundred hours
     'clockStyle': 'numeric',
-    'refreshTime': 5000
+    'refreshTime': 10000
 }
 
 defaults = {
@@ -17,7 +17,7 @@ defaults = {
     'screenSize': '720x720',
     'screenWidth': 720,
     'screenHeight': 720,
-    'fullScreen': False,
+    'fullScreen': True,
 
     ## COLOURS
     'windowBackground': '#000000',

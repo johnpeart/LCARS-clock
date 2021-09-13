@@ -1,7 +1,7 @@
 from tkinter import *
 from PIL import ImageTk, Image  
 
-import windowManagement as new
+import windowManagement as wm
 import window_root as appRoot
 import window_settings as appSettings
 import window_numeric as appNumeric
@@ -19,23 +19,25 @@ host = system.getHostIP()
 # CREATE THE APP ROOT WINDOW AND TOP LEVEL WINDOWs #
 ####################################################
 
-app = new.app(defaults['appName'])
-frameAppRoot = new.container(app)
+app = wm.app(defaults['appName'])
+frameAppRoot = wm.container(app)
 
-windowSettings = new.window('Operations')
-frameSettings = new.container(windowSettings)
+windowSettings = wm.window('Operations')
+frameSettings = wm.container(windowSettings)
 
-windowStyleNumeric = new.window('Numeric clock')
-frameStyleNumeric = new.container(windowStyleNumeric)
+windowNumeric = wm.window('Numeric clock')
+frameNumeric = wm.container(windowNumeric)
 
-windowStyleWordClock = new.window('Word clock')
-frameStyleWordClock = new.container(windowStyleWordClock)
+windowWordClock = wm.window('Word clock')
+frameWordClock = wm.container(windowWordClock)
 
-windowStyleYellowAlert = new.window('Alert: Condition Yellow')
-frameStyleYellowAlert = new.container(windowStyleYellowAlert)
+windowYellowAlert = wm.window('Alert: Condition Yellow')
+frameYellowAlert = wm.container(windowYellowAlert)
 
-windowStyleRedAlert = new.window('Alert: Condition Red')
-frameStyleRedAlert = new.container(windowStyleRedAlert)
+windowRedAlert = wm.window('Alert: Condition Red')
+frameRedAlert = wm.container(windowRedAlert)
+
+windows = [windowSettings, windowNumeric, windowWordClock, windowYellowAlert, windowRedAlert]
 
 ########################################################
 # STYLES FOR THE APP ROOT WINDOW AND TOP LEVEL WINDOWS #
@@ -51,11 +53,11 @@ redAlertBanner = ImageTk.PhotoImage(lcarsRedAlertBanner)
 root_Hostname_Label, root_HostIP_Label = appRoot.format(frameAppRoot, defaultBanner, host)
 settings_Hostname_Label, settings_HostIP_Label, settings_ClockStyle_Label = appSettings.format(frameSettings, defaultBanner, host)
 
-numeric_Time_Label, numeric_Date_Label = appNumeric.format(frameStyleNumeric)
-wordclock_Time_Label = appWordclock.format(frameStyleWordClock)
+numeric_Time_Label, numeric_Date_Label = appNumeric.format(frameNumeric)
+wordclock_Time_Label = appWordclock.format(frameWordClock)
 
-yellowAlert_Message_Label, yellowAlert_Time_Label, yellowAlert_Date_Label = appYellowAlert.format(frameStyleYellowAlert, yellowAlertBanner)
-redAlert_Message_Label, redAlert_Time_Label, redAlert_Date_Label = appRedAlert.format(frameStyleRedAlert, redAlertBanner)
+yellowAlert_Message_Label, yellowAlert_Time_Label, yellowAlert_Date_Label = appYellowAlert.format(frameYellowAlert, yellowAlertBanner)
+redAlert_Message_Label, redAlert_Time_Label, redAlert_Date_Label = appRedAlert.format(frameRedAlert, redAlertBanner)
 
 
 def updateDisplay():
@@ -72,6 +74,8 @@ def updateDisplay():
     labels.update(redAlert_Message_Label, 'The Time is ' + timeNow['words'])
     labels.update(redAlert_Time_Label, timeNow['numeric'])
     labels.update(redAlert_Date_Label, dateNow)
+
+    wm.showWindow(timeNow['numeric'], windows)
 
     app.after(
         options['refreshTime'], 

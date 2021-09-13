@@ -14,18 +14,13 @@ def app(title):
         bd = defaults['borderWidth']
     )
 
-    # FUNCTIONS TO MANIPULATE THE FRAME
     # Function to exit the programme
     def endProgramme(e):
         print('Computer, end programme')
         app.destroy()
 
-    def toggleFrame(e):
-        print('Toggle frame')
-
     # Bind the Escape key to the endProgramme function
     app.bind('<Escape>', endProgramme)
-    app.bind('<1>', toggleFrame)
 
     return app
 
@@ -42,6 +37,14 @@ def window(title):
     window.attributes('-fullscreen', defaults['fullScreen'])
     window.iconify()
 
+    # Function to exit the programme
+    def closeWindow(e):
+        print('Close window')
+        window.destroy()
+
+    # Bind the Escape key to the endProgramme function
+    window.bind('<Escape>', closeWindow)
+
     return window
 
 # This function can create a container frame in the window
@@ -55,3 +58,71 @@ def container(window):
     container.place(relx = 0.5, rely = 0.5, anchor = 'center')
 
     return container
+
+def showWindow(time, win):
+
+    time = int(time[-1])
+
+    if time == 1:
+        print('show numeric clock')
+        win[0].iconify()
+        win[1].deiconify()
+        win[2].iconify()
+        win[3].iconify()
+        win[4].iconify()
+    elif time == 2:
+        print('show word clock')
+        win[0].iconify()
+        win[1].iconify()
+        win[2].deiconify()
+        win[3].iconify()
+        win[4].iconify()
+    elif time == 3:
+        print('show yellow alert')
+        win[0].iconify()
+        win[1].iconify()
+        win[2].iconify()
+        win[3].deiconify()
+        win[4].iconify()
+    elif time == 4:
+        print('show red alert')
+        win[0].iconify()
+        win[1].iconify()
+        win[2].iconify()
+        win[3].iconify()
+        win[4].deiconify()
+    elif time == 5:
+        print('show numeric clock')
+        win[0].iconify()
+        win[1].deiconify()
+        win[2].iconify()
+        win[3].iconify()
+        win[4].iconify()
+    elif time == 6:
+        print('show word clock')
+        win[0].iconify()
+        win[1].iconify()
+        win[2].deiconify()
+        win[3].iconify()
+        win[4].iconify()
+    elif time == 7:
+        print('show yellow alert')
+        win[0].iconify()
+        win[1].iconify()
+        win[2].iconify()
+        win[3].deiconify()
+        win[4].iconify()
+    elif time == 8:
+        print('show red alert')
+        win[0].iconify()
+        win[1].iconify()
+        win[2].iconify()
+        win[3].iconify()
+        win[4].deiconify()
+    elif time == 9:
+        print('show settings')
+        win[0].deiconify()
+        win[1].iconify()
+        win[2].iconify()
+        win[3].iconify()
+        win[4].iconify()

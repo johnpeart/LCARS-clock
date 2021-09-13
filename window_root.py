@@ -3,19 +3,19 @@ from settings import defaults
 
 def format(container, hr, host):
 
-    app_DefaultBannerTop = Label(
+    banner_Top = Label(
         container,
         image = hr,
         background = defaults['windowBackground']
     )
-    app_DefaultBannerBottom = Label(
+    banner_Bottom = Label(
         container,
         image = hr,
         background = defaults['windowBackground']
     )
 
     # Styles for app name
-    app_Message_Label = Label(
+    message_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 100),
                     background = defaults['windowBackground'],
@@ -25,7 +25,7 @@ def format(container, hr, host):
                 )
 
     # Styles for device host and IP
-    app_Hostname_Label = Label(
+    hostname_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 40),
                     background = defaults['windowBackground'],
@@ -34,7 +34,7 @@ def format(container, hr, host):
                     padx = 20
                 )
 
-    app_HostIP_Label = Label(
+    hostIP_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 40),
                     background = defaults['windowBackground'],
@@ -47,35 +47,35 @@ def format(container, hr, host):
     # GRID FOR THE APP ROOT WINDOW #
     ################################
 
-    app_DefaultBannerTop.grid(
+    banner_Top.grid(
         row = 0,
         column = 0,
         columnspan = 2
     )
 
-    app_Message_Label.grid(
+    message_Label.grid(
         row = 1,
         column = 0,
         pady = (60,40),
         columnspan = 2
     )
 
-    app_DefaultBannerBottom.grid(
+    banner_Bottom.grid(
         row = 2,
         column = 0,
         columnspan = 2
     )
 
-    app_Hostname_Label.grid(
+    hostname_Label.grid(
         row = 3,
         column = 0,
         pady = (60, 0)
     )
 
-    app_HostIP_Label.grid(
+    hostIP_Label.grid(
         row = 3,
         column = 1,
         pady = (60, 0)
     )
 
-    return container
+    return hostname_Label, hostIP_Label

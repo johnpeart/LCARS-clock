@@ -3,19 +3,19 @@ from settings import options, defaults
 
 def format(container, hr, host):
 
-    settings_DefaultBannerTop = Label(
+    banner_Top = Label(
         container,
         image = hr,
         background = defaults['windowBackground']
     )
-    settings_DefaultBannerBottom = Label(
+    banner_Bottom = Label(
         container,
         image = hr,
         background = defaults['windowBackground']
     )
 
     # Styles for label ('Operations')
-    settings_Label = Label(
+    title_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 70),
                     background = defaults['windowBackground'],
@@ -24,7 +24,7 @@ def format(container, hr, host):
                 )
 
     # Styles for device host and IP
-    settings_Hostname_Label = Label(
+    hostname_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 40),
                     background = defaults['windowBackground'],
@@ -33,7 +33,7 @@ def format(container, hr, host):
                     padx = 20
                 )
 
-    settings_Hostname_Details_Label = Label(
+    hostname_Details_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 40),
                     background = defaults['windowBackground'],
@@ -42,7 +42,7 @@ def format(container, hr, host):
                     padx = 20
                 )
 
-    settings_HostIP_Label = Label(
+    hostIP_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 40),
                     background = defaults['windowBackground'],
@@ -51,7 +51,7 @@ def format(container, hr, host):
                     padx = 20
                 )
 
-    settings_HostIP_Details_Label = Label(
+    hostIP_Details_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 40),
                     background = defaults['windowBackground'],
@@ -60,7 +60,7 @@ def format(container, hr, host):
                     padx = 20
                 )
 
-    settings_ClockStyle_Label = Label(
+    clockStyle_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 40),
                     background = defaults['windowBackground'],
@@ -69,7 +69,7 @@ def format(container, hr, host):
                     padx = 20
                 )
 
-    settings_ClockStyle_Details_Label = Label(
+    clockStyle_Details_Label = Label(
                     container, 
                     font = (defaults['fontFace'], 40),
                     background = defaults['windowBackground'],
@@ -83,59 +83,59 @@ def format(container, hr, host):
     # GRID FOR THE SETTINGS WINDOW #
     ################################
 
-    settings_Label.grid(
+    title_Label.grid(
         row = 0,
         column = 0,
         columnspan = 2,
         pady = (40, 20)
     )
 
-    settings_DefaultBannerTop.grid(
+    banner_Top.grid(
         row = 1,
         column = 0,
         columnspan = 2
     )
 
-    settings_Hostname_Label.grid(
+    hostname_Label.grid(
         row = 2,
         column = 0,
         pady = (20, 0)
     )
 
-    settings_Hostname_Details_Label.grid(
+    hostname_Details_Label.grid(
         row = 2,
         column = 1,
         pady = (20, 0)
     )
 
-    settings_HostIP_Label.grid(
+    hostIP_Label.grid(
         row = 3,
         column = 0,
         pady = (20, 0)
     )
 
-    settings_HostIP_Details_Label.grid(
+    hostIP_Details_Label.grid(
         row = 3,
         column = 1,
         pady = (20, 0)
     )
 
-    settings_ClockStyle_Label.grid(
+    clockStyle_Label.grid(
         row = 4,
         column = 0,
         pady = (20, 0)
     )
 
-    settings_ClockStyle_Details_Label.grid(
+    clockStyle_Details_Label.grid(
         row = 4,
         column = 1,
         pady = (20, 0)
     )
 
-    settings_DefaultBannerBottom.grid(
+    banner_Bottom.grid(
         row = 5,
         column = 0,
         columnspan = 2
     )
 
-    return container
+    return hostname_Details_Label, hostIP_Details_Label, clockStyle_Details_Label

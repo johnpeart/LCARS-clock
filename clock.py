@@ -1,17 +1,10 @@
 from time import strftime
 
-def updateLabel(labelToUpdate, textToShow):
-    text = textToShow
-    labelToUpdate.config(
-        text = text.upper(),
-        wraplength = 700
-    )
-
 def formatTime():
 
     # This will format the time as HHMM
     # i.e. 0900
-    numericTime = strftime('%H%M')
+    numericTime = strftime('%H%M%S')
     wordTime = militaryTimeWords(strftime('%H'), strftime('%M'))
 
     return {'numeric': numericTime, 'words': wordTime}

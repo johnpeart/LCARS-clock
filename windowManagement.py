@@ -1,6 +1,6 @@
 from tkinter import Tk, Toplevel, Frame
 from tkinter.constants import ANCHOR
-from settings import defaults
+from settings import options, defaults
 
 #This function creates the root window for the app
 def app(title):
@@ -35,15 +35,17 @@ def window(title):
         background = defaults['windowBackground']
     )
     window.attributes('-fullscreen', defaults['fullScreen'])
+    window.attributes('-topmost', True)
+    window.focus_force()
     window.iconify()
 
     # Function to exit the programme
-    def closeWindow(e):
+    def minimiseWindow(e):
         print('Close window')
-        window.destroy()
+        window.iconify()
 
     # Bind the Escape key to the endProgramme function
-    window.bind('<Escape>', closeWindow)
+    window.bind('<Escape>', minimiseWindow)
 
     return window
 
@@ -59,70 +61,63 @@ def container(window):
 
     return container
 
-def showWindow(time, win):
+def showWindow(t, win):
 
-    time = int(time[-1])
+    alertToShow = True
+    minute = int(t[-2:])
+    time = int(t)
 
-    if time == 1:
-        print('show numeric clock')
-        win[0].iconify()
-        win[1].deiconify()
-        win[2].iconify()
-        win[3].iconify()
-        win[4].iconify()
-    elif time == 2:
-        print('show word clock')
-        win[0].iconify()
-        win[1].iconify()
-        win[2].deiconify()
-        win[3].iconify()
-        win[4].iconify()
-    elif time == 3:
-        print('show yellow alert')
-        win[0].iconify()
-        win[1].iconify()
-        win[2].iconify()
-        win[3].deiconify()
-        win[4].iconify()
-    elif time == 4:
-        print('show red alert')
-        win[0].iconify()
-        win[1].iconify()
-        win[2].iconify()
-        win[3].iconify()
-        win[4].deiconify()
-    elif time == 5:
-        print('show numeric clock')
-        win[0].iconify()
-        win[1].deiconify()
-        win[2].iconify()
-        win[3].iconify()
-        win[4].iconify()
-    elif time == 6:
-        print('show word clock')
-        win[0].iconify()
-        win[1].iconify()
-        win[2].deiconify()
-        win[3].iconify()
-        win[4].iconify()
-    elif time == 7:
-        print('show yellow alert')
-        win[0].iconify()
-        win[1].iconify()
-        win[2].iconify()
-        win[3].deiconify()
-        win[4].iconify()
-    elif time == 8:
-        print('show red alert')
-        win[0].iconify()
-        win[1].iconify()
-        win[2].iconify()
-        win[3].iconify()
-        win[4].deiconify()
-    elif time == 9:
-        print('show settings')
+    if time >= 0 and time <= 30:
         win[0].deiconify()
         win[1].iconify()
         win[2].iconify()
+        win[3].iconify()
+        win[4].iconify()
+    elif alertToShow == True:
+        if (minute > 10 and minute < 20) or (minute > 30 and minute < 40) or (minute > 50 and minute < 60):
+            print('show alert')
+            win[0].iconify()
+            win[1].iconify()
+            win[2].iconify()
+            win[3].deiconify()
+            win[4].iconify()
+
+        else:
+            print('show clock')
+            # don't show the settings
+            win[0].iconify()
+
+            # show the clock based on the settings
+            if options['clockStyle'] == 'numeric':
+                win[1].deiconify()
+                win[2].iconify()
+            if options['clockStyle'] == 'words':
+                win[1].iconify()
+                win[2].deiconify()
+            else:
+                win[1].deiconify()
+                win[2].iconify()
+
+            # don't show the alert
+            win[3].iconify()
+            win[4].iconify()
+
+    else:
+        print('show clock')
+        # don't show the settings
+        win[0].iconify()
+
+        # show the clock based on the settings
+        if options['clockStyle'] == 'numeric':
+            win[1].deiconify()
+            win[2].iconify()
+        if options['clockStyle'] == 'words':
+            win[1].iconify()
+            win[2].deiconify()
+        else:
+            win[1].deiconify()
+            win[2].iconify()
+
+        # don't show the alert
         win[3].iconify()
         win[4].iconify()

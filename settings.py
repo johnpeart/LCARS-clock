@@ -42,45 +42,67 @@ defaults = {
 
 messages = {
 
-    "nelson sandford" : {
+    "nelson sandford birthday" : {
         "name" : "Nelson Sandford",
         "relationship" : null,
+        "type": "birthday",
         "year" : 1970,
         "month" : 8,
         "day" : 2
     },
 
-    "linda sandford" : {
+    "linda sandford birthday" : {
         "name" : "Linda Sandford",
         "relationship" : "wife",
+        "type": "birthday",
         "year" : 1973,
         "month" : 12,
         "day" : 4
     },
 
-    "john peart" : {
+    "linda sandford wedding anniversary" : {
+        "name" : "Linda Sandford",
+        "relationship" : "wife",
+        "type": "wedding anniversary",
+        "year" : 2010,
+        "month" : 11,
+        "day" : 1
+    },
+
+    "linda sandford valentine's day" : {
+        "name" : "Linda Sandford",
+        "relationship" : "wife",
+        "type": "valentines day",
+        "year" : null,
+        "month" : 2,
+        "day" : 14
+    },
+
+    "john peart birthday" : {
         "name" : "John Peart",
         "relationship" : "son",
+        "type": "birthday",
         "year" : 1991,
         "month" : 11,
         "day" : 26
     },
 
-    "charlotte peart" : {
+    "charlotte peart birthday" : {
         "name" : "Charlotte Peart",
         "relationship" : "daughter",
+        "type": "birthday",
         "year" : 1990,
         "month" : 2,
         "day" : 24
     },
 
-    "olivia forscutt-peart" : {
+    "olivia forscutt-peart birthday" : {
         "name" : "Olivia Forscutt-Peart",
         "relationship" : "grand daughter",
+        "type": "birthday",
         "year" : 2021,
         "month" : 7,
         "day" : 23
     }
-
 
 }

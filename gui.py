@@ -77,7 +77,7 @@ def updateDisplay():
     labels.update(redAlert_Time_Label, timeNow['numeric'])
     labels.update(redAlert_Date_Label, dateNow)
 
-    wm.showWindow(time = timeNow['numeric'], alert = alertsNow['alert'], win = windows)
+    wm.showWindow(time = timeNow['numeric'], alertType = alertsNow['alert'], win = windows)
 
     app.after(
         options['refreshTime'], 

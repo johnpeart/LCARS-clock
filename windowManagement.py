@@ -61,9 +61,9 @@ def container(window):
 
     return container
 
-def showWindow(time, alert, win):
+def showWindow(time, alertType, win):
 
-    alertToShow = alert
+    alertToShow = alertType
     minute = int(time[-2:])
     time = int(time)
 
@@ -75,15 +75,21 @@ def showWindow(time, alert, win):
         win[3].iconify()
         win[4].iconify()
     # Otherwise, check if there is an alert to show
-    elif alertToShow == True:
+    elif alertToShow != False:
         # If there is an alert, and the time is between 10-20, 30-40, 50-60 minutes past the hour, show a message
         if (minute > 10 and minute < 20) or (minute > 30 and minute < 40) or (minute > 50 and minute < 60):
             print('show alert')
             win[0].iconify()
             win[1].iconify()
             win[2].iconify()
-            win[3].deiconify()
-            win[4].iconify()
+            if alertToShow == 'yellow':
+                win[3].deiconify()
+                win[4].iconify()
+            elif alertToShow == 'red':
+                win[3].iconify()
+                win[4].deiconify
+            else:
+                win[0].deiconify()
         # Otherwise, show the clock
         else:
             print('show clock')

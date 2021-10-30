@@ -39,3 +39,9 @@ defaults = {
     ## OTHER STYLES
     'borderWidth': 0
 }
+
+messages = {
+
+
+
+}

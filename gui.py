@@ -10,6 +10,7 @@ import window_yellowalert as appYellowAlert
 import window_redalert as appRedAlert
 import labels as labels
 import clock as clock
+import alerts as alerts
 from settings import options, defaults
 import system as system
 
@@ -64,18 +65,19 @@ def updateDisplay():
 
     timeNow = clock.formatTime()
     dateNow = clock.formatDate()
+    alertsNow = alerts.checkMessages()
 
     labels.update(numeric_Time_Label, timeNow['numeric'])
     labels.update(numeric_Date_Label, dateNow)
     labels.update(wordclock_Time_Label, timeNow['words'])
-    labels.update(yellowAlert_Message_Label, 'The Time is ' + timeNow['words'])
+    labels.update(yellowAlert_Message_Label, alertsNow['message'])
     labels.update(yellowAlert_Time_Label, timeNow['numeric'])
     labels.update(yellowAlert_Date_Label, dateNow)
-    labels.update(redAlert_Message_Label, 'The Time is ' + timeNow['words'])
+    labels.update(redAlert_Message_Label, alertsNow['message'])
     labels.update(redAlert_Time_Label, timeNow['numeric'])
     labels.update(redAlert_Date_Label, dateNow)
 
-    wm.showWindow(timeNow['numeric'], windows)
+    wm.showWindow(time = timeNow['numeric'], alert = alertsNow['alert'], win = windows)
 
     app.after(
         options['refreshTime'], 

@@ -61,19 +61,22 @@ def container(window):
 
     return container
 
-def showWindow(t, win):
+def showWindow(time, alert, win):
 
-    alertToShow = True
-    minute = int(t[-2:])
-    time = int(t)
+    alertToShow = alert
+    minute = int(time[-2:])
+    time = int(time)
 
+    # If the time is between 0000 and 0030, show the setting screen
     if time >= 0 and time <= 30:
         win[0].deiconify()
         win[1].iconify()
         win[2].iconify()
         win[3].iconify()
         win[4].iconify()
+    # Otherwise, check if there is an alert to show
     elif alertToShow == True:
+        # If there is an alert, and the time is between 10-20, 30-40, 50-60 minutes past the hour, show a message
         if (minute > 10 and minute < 20) or (minute > 30 and minute < 40) or (minute > 50 and minute < 60):
             print('show alert')
             win[0].iconify()
@@ -81,7 +84,7 @@ def showWindow(t, win):
             win[2].iconify()
             win[3].deiconify()
             win[4].iconify()
-
+        # Otherwise, show the clock
         else:
             print('show clock')
             # don't show the settings
@@ -101,7 +104,7 @@ def showWindow(t, win):
             # don't show the alert
             win[3].iconify()
             win[4].iconify()
-
+    # Otherwise, just show the clock
     else:
         print('show clock')
         # don't show the settings

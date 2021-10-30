@@ -17,7 +17,7 @@ defaults = {
     'screenSize': '720x720',
     'screenWidth': 720,
     'screenHeight': 720,
-    'fullScreen': True,
+    'fullScreen': False,
 
     ## COLOURS
     'windowBackground': '#000000',
@@ -42,6 +42,45 @@ defaults = {
 
 messages = {
 
+    "nelson sandford" : {
+        "name" : "Nelson Sandford",
+        "relationship" : null,
+        "year" : 1970,
+        "month" : 8,
+        "day" : 2
+    },
+
+    "linda sandford" : {
+        "name" : "Linda Sandford",
+        "relationship" : "wife",
+        "year" : 1973,
+        "month" : 12,
+        "day" : 4
+    },
+
+    "john peart" : {
+        "name" : "John Peart",
+        "relationship" : "son",
+        "year" : 1991,
+        "month" : 11,
+        "day" : 26
+    },
+
+    "charlotte peart" : {
+        "name" : "Charlotte Peart",
+        "relationship" : "daughter",
+        "year" : 1990,
+        "month" : 2,
+        "day" : 24
+    },
+
+    "olivia forscutt-peart" : {
+        "name" : "Olivia Forscutt-Peart",
+        "relationship" : "grand daughter",
+        "year" : 2021,
+        "month" : 7,
+        "day" : 23
+    }
 
 
 }

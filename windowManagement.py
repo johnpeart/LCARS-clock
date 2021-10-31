@@ -74,45 +74,15 @@ def showWindow(time, alertType, win):
         win[2].iconify()
         win[3].iconify()
         win[4].iconify()
+    elif alertToShow == 'red':
+        win[3].iconify()
+        win[4].deiconify()
     # Otherwise, check if there is an alert to show
-    elif alertToShow != False:
-        # If there is an alert, and the time is between 10-20, 30-40, 50-60 minutes past the hour, show a message
-        if (minute > 10 and minute < 20) or (minute > 30 and minute < 40) or (minute > 50 and minute < 60):
-            print('show alert')
-            win[0].iconify()
-            win[1].iconify()
-            win[2].iconify()
-            if alertToShow == 'yellow':
-                win[3].deiconify()
-                win[4].iconify()
-            elif alertToShow == 'red':
-                win[3].iconify()
-                win[4].deiconify
-            else:
-                win[0].deiconify()
-        # Otherwise, show the clock
-        else:
-            print('show clock')
-            # don't show the settings
-            win[0].iconify()
-
-            # show the clock based on the settings
-            if options['clockStyle'] == 'numeric':
-                win[1].deiconify()
-                win[2].iconify()
-            if options['clockStyle'] == 'words':
-                win[1].iconify()
-                win[2].deiconify()
-            else:
-                win[1].deiconify()
-                win[2].iconify()
-
-            # don't show the alert
-            win[3].iconify()
-            win[4].iconify()
+    elif alertToShow == 'yellow':
+        win[3].deiconify()
+        win[4].iconify()
     # Otherwise, just show the clock
     else:
-        print('show clock')
         # don't show the settings
         win[0].iconify()
 

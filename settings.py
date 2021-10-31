@@ -17,7 +17,7 @@ defaults = {
     'screenSize': '720x720',
     'screenWidth': 720,
     'screenHeight': 720,
-    'fullScreen': False,
+    'fullScreen': True,
 
     ## COLOURS
     'windowBackground': '#000000',
@@ -44,9 +44,8 @@ messages = {
 
     "nelson sandford birthday" : {
         "name" : "Nelson Sandford",
-        "relationship" : null,
+        "relationship" : "null",
         "type": "birthday",
-        "year" : 1970,
         "month" : 8,
         "day" : 2
     },
@@ -55,7 +54,6 @@ messages = {
         "name" : "Linda Sandford",
         "relationship" : "wife",
         "type": "birthday",
-        "year" : 1973,
         "month" : 12,
         "day" : 4
     },
@@ -64,25 +62,14 @@ messages = {
         "name" : "Linda Sandford",
         "relationship" : "wife",
         "type": "wedding anniversary",
-        "year" : 2010,
         "month" : 11,
         "day" : 1
-    },
-
-    "linda sandford valentine's day" : {
-        "name" : "Linda Sandford",
-        "relationship" : "wife",
-        "type": "valentines day",
-        "year" : null,
-        "month" : 2,
-        "day" : 14
     },
 
     "john peart birthday" : {
         "name" : "John Peart",
         "relationship" : "son",
         "type": "birthday",
-        "year" : 1991,
         "month" : 11,
         "day" : 26
     },
@@ -91,7 +78,6 @@ messages = {
         "name" : "Charlotte Peart",
         "relationship" : "daughter",
         "type": "birthday",
-        "year" : 1990,
         "month" : 2,
         "day" : 24
     },
@@ -100,9 +86,26 @@ messages = {
         "name" : "Olivia Forscutt-Peart",
         "relationship" : "grand daughter",
         "type": "birthday",
-        "year" : 2021,
         "month" : 7,
         "day" : 23
+    },
+
+    "valentine's day" : {
+        "type": "valentine's day",
+        "month" : 2,
+        "day" : 14
+    },
+
+    "halloween" : {
+        "type": "Halloween",
+        "month" : 11,
+        "day" : 31
+    },
+
+    "christmas day" : {
+        "type": "christmas day",
+        "month" : 12,
+        "day" : 25
     }
 
 }

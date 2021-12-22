@@ -97,8 +97,8 @@ messages = {
     },
 
     "halloween" : {
-        "type": "Halloween",
-        "month" : 11,
+        "type": "halloween",
+        "month" : 10,
         "day" : 31
     },
 

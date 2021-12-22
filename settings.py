@@ -32,9 +32,9 @@ defaults = {
     'fontFace': 'Context Ultra Condensed SSi',
 
     ## IMAGES
-    'horizontalRule_Default': './assets/images/default-banner.png',
-    'horizontalRule_YellowAlert': './assets/images/yellow-alert-banner.png',
-    'horizontalRule_RedAlert': './assets/images/red-alert-banner.png',
+    'horizontalRule_Default': '/home/pi/LCARS-clock/assets/images/default-banner.png',
+    'horizontalRule_YellowAlert': '/home/pi/LCARS-clock/assets/images/yellow-alert-banner.png',
+    'horizontalRule_RedAlert': '/home/pi/LCARS-clock/assets/images/red-alert-banner.png',
 
     ## OTHER STYLES
     'borderWidth': 0
